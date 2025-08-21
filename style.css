@@ -1,0 +1,41 @@
+body {
+  background: radial-gradient(circle at top left, #1a1a2e, #0f0f1a);
+}
+
+.glow-text {
+  background: linear-gradient(90deg, #6a5af9, #b43cf3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(180, 60, 243, 0.3);
+}
+
+/* Social Media Icon */
+.social-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.social-icon:hover {
+  background: linear-gradient(135deg, #6a5af9, #b43cf3);
+  transform: scale(1.1);
+  color: white;
+}

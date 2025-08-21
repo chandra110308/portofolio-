@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS Animate On Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="text-gray-200">
+
+<!-- Navbar -->
+<header class="fixed top-0 w-full bg-black/30 backdrop-blur-lg z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold glow-text">Chandra Putra Anugrah</h1>
+    <nav class="hidden md:flex gap-6">
+      <a href="#home" class="hover:text-purple-400">Home</a>
+      <a href="#about" class="hover:text-purple-400">About Me</a>
+      <a href="#portfolio" class="hover:text-purple-400">Portofolio</a>
+      <a href="#sertifikat" class="hover:text-purple-400">Sertifikat</a>
+      <a href="#contact" class="hover:text-purple-400">Contact</a>
+    </nav>
+  </div>
+
+  <!-- 🔥 Text berjalan -->
+  <div class="bg-purple-600 overflow-hidden">
+    <p class="animate-marquee whitespace-nowrap py-2 text-sm font-medium text-white">
+      🌟 Selamat Datang di Portofolio Chandra Putra Anugrah 🌟
+    </p>
+  </div>
+</header>
+
+<!-- CSS Animasi -->
+<style>
+@keyframes marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 12s linear infinite;
+}
+</style>
+
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+  <h4 class="text-4xl md:text-6xl font-extrabold mb-4">
+    Saya <span class="glow-text">Chandra Putra Anugrah</span>
+  </h4>
+  <p class="text-lg text-gray-400 mb-4">
+    <span id="typed"></span>
+  </p>
+
+  <!-- Social Media -->
+  <div class="flex gap-6 mt-6 text-2xl justify-center" data-aos="zoom-in" data-aos-delay="200">
+    <a href="https://github.com/chandra110308" target="_blank" class="social-icon github">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.tiktok.com/@anugrahsecc" target="_blank" class="social-icon tiktok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://www.instagram.com/chndrxoi" target="_blank" class="social-icon instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</section>
+
+<!-- About Me -->
+<section id="about" class="py-20 px-6 text-center">
+  <h3 class="text-3xl font-bold mb-6 glow-text" data-aos="fade-up">About Me</h3>
+  <img src="images/profile.jpg" alt="profile" class="w-40 h-40 rounded-full mx-auto border-4 border-purple-500 shadow-lg mb-6" data-aos="zoom-in">
+  <p class="max-w-2xl mx-auto text-gray-400 mb-6" data-aos="fade-up" data-aos-delay="200">
+    Saya lulusan baru dari SMK Negeri 2 Probolinggo siswa jurusan Teknik Komputer dan Jaringan (TKJ) dengan minat di bidang komputer dan jaringan maupun di dunia cyber security. Terampil dalam instalasi sistem operasi, konfigurasi jaringan, serta troubleshooting hardware dan software. Saya mampu bekerja sama dalam tim maupun individu, disiplin, serta memiliki semangat belajar yang tinggi untuk mengembangkan kemampuan di dunia IT.
+  </p>
+  <a href="cv/cv.pdf" class="bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-3 rounded-lg" data-aos="fade-up" data-aos-delay="300">Download CV</a>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="py-20 px-6 bg-black/20">
+  <h3 class="text-3xl font-bold text-center mb-12 glow-text" data-aos="fade-up">Portfolio Saya</h3>
+  <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div class="glow-card p-6 rounded-2xl" data-aos="fade-up">
+      <h4 class="text-xl font-semibold mb-2">Troubleshooting</h4>
+      <p class="text-gray-400 mb-4">Analisis dan perbaikan jaringan, deteksi kerusakan hardware/software</p>
+    </div>
+    <div class="glow-card p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="150">
+      <h4 class="text-xl font-semibold mb-2">Sistem Operasi & Server</h4>
+      <p class="text-gray-400 mb-4">Instalasi Linux Server & Windows Server, konfigurasi DNS, DHCP, FTP, Web server, VPS.</p>
+    </div>
+    <div class="glow-card p-6 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+      <h4 class="text-xl font-semibold mb-2">Sistem Jaringan</h4>
+      <p class="text-gray-400 mb-4">Instalasi jaringan LAN & WLAN, konfigurasi router & switch, subnetting & routing dasar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sertifikat Section -->
+<section id="sertifikat" class="py-16 bg-[#0f0f1a] text-white">
+  <div class="max-w-5xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-purple-400 mb-10" data-aos="fade-up">Sertifikat</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Sertifikat 1 -->
+      <div class="bg-[#1a1a2e] p-5 rounded-xl shadow-lg hover:scale-105 transition duration-300" data-aos="fade-up">
+        <img src="sertifikat/sertifikat1.jpg" alt="Sertifikat 1" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Sertifikat Webinar</h3>
+        <p class="text-sm text-gray-400">Diterbitkan oleh ID-Networkers - 2025</p>
+      </div>
+      
+      <!-- Sertifikat 2 -->
+      <div class="bg-[#1a1a2e] p-5 rounded-xl shadow-lg hover:scale-105 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+        <img src="sertifikat/sertifikat2.jpg" alt="Sertifikat 2" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Sertifikat Course</h3>
+        <p class="text-sm text-gray-400">Diterbitkan oleh Cisco Academy Networking - 2025</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-20 px-6">
+  <h3 class="text-3xl font-bold text-center mb-8 glow-text" data-aos="fade-up">Hubungi Saya</h3>
+  <form class="max-w-xl mx-auto glow-card p-6 rounded-2xl" data-aos="zoom-in">
+    <input type="text" placeholder="Nama Anda" class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700">
+    <input type="email" placeholder="Email Anda" class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700">
+    <textarea placeholder="Pesan Anda" class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700"></textarea>
+    <button class="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg">Kirim Pesan</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer class="py-6 text-center text-gray-500 bg-black/30">
+  <p>&copy; 2025 Chandra Putra Anugrah. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+</body>
+</html>
