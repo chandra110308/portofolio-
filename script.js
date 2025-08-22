@@ -1,7 +1,7 @@
 // Init AOS
 AOS.init({
   duration: 1000,
-  once: true
+  miror+once: true
 });
 
 // Typed.js
