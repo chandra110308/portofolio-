@@ -229,27 +229,53 @@
 <section id="comments" class="py-20 px-6">
   <h3 class="text-3xl font-bold text-center mb-8 glow-text">Komentar Pengunjung</h3>
 
-  <!-- Form Komentar -->
-  <form id="commentForm" class="max-w-xl mx-auto glow-card p-6 rounded-2xl mb-4">
-    <input id="name" type="text" placeholder="Nama Anda" required
-      class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700">
-    <textarea id="message" placeholder="Tulis komentar..." required
-      class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700"></textarea>
-    <button type="submit"
-      class="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg hover:scale-105 transition">Kirim Komentar</button>
-  </form>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- Form Komentar (Kiri) -->
+    <form id="commentForm" class="glow-card p-6 rounded-2xl h-fit">
+      <input id="name" type="text" placeholder="Nama Anda" required
+        class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700">
+      <textarea id="message" placeholder="Tulis komentar..." required
+        class="w-full mb-4 p-3 rounded bg-black/40 border border-gray-700"></textarea>
+      <button type="submit"
+        class="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg hover:scale-105 transition">
+        Kirim Komentar
+      </button>
 
-  <!-- Notifikasi -->
-  <div id="notification"
-    class="hidden max-w-xl mx-auto p-3 mb-4 text-center rounded-lg font-semibold opacity-0 transform -translate-y-5 transition duration-500"></div>
+      <!-- Notifikasi -->
+      <div id="notification"
+        class="hidden mt-4 p-3 text-center rounded-lg font-semibold opacity-0 transform -translate-y-5 transition duration-500">
+      </div>
+    </form>
 
-  <!-- Daftar komentar -->
-  <div class="max-w-2xl mx-auto mt-10">
-    <div id="messagesList" class="flex flex-col gap-4"></div>
+    <!-- Daftar komentar (Kanan) -->
+    <div class="glow-card p-6 rounded-2xl">
+      <h4 class="text-xl font-bold mb-4 text-purple-400">Hasil Komentar</h4>
+      <div class="overflow-y-auto max-h-96 rounded-lg shadow-lg">
+        <table class="w-full border-collapse">
+          <thead class="bg-purple-600 text-white">
+            <tr>
+              <th class="p-3 text-left w-16">No</th>
+              <th class="p-3 text-left w-40">Nama</th>
+              <th class="p-3 text-left">Komentar</th>
+            </tr>
+          </thead>
+          <tbody id="messagesList" class="bg-[#1a1a2e] text-gray-300"></tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- Firebase -->
+<!-- Footer -->
+<footer class="py-6 text-center text-gray-500 bg-black/30">
+  <p>&copy; 2025 Chandra Putra Anugrah. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
   import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot }
@@ -268,14 +294,13 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // 🔔 fungsi show notifikasi dengan animasi
+  // 🔔 fungsi notifikasi
   function showNotification(message, type = "success") {
     const notif = document.getElementById("notification");
     notif.textContent = message;
-    notif.className = `max-w-xl mx-auto p-3 mb-4 text-center rounded-lg font-semibold transition duration-500 
+    notif.className = `mt-4 p-3 text-center rounded-lg font-semibold transition duration-500 
       ${type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"}`;
 
-    // animasi fade-in
     notif.classList.remove("hidden", "opacity-0", "-translate-y-5");
     notif.classList.add("opacity-100", "translate-y-0");
 
@@ -310,57 +335,40 @@
     }
   });
 
-  // Tampilkan komentar realtime + animasi masuk
+  // Tampilkan komentar realtime ke tabel
   const messagesList = document.getElementById("messagesList");
   const commentsRef = collection(db, "comments");
   const q = query(commentsRef, orderBy("timestamp", "desc"));
 
   onSnapshot(q, (snapshot) => {
     messagesList.innerHTML = "";
+    let no = 1;
     snapshot.forEach((doc) => {
       const data = doc.data();
-      const card = document.createElement("div");
-      card.className = "bg-[#1a1a2e] p-4 rounded-lg shadow-lg hover:scale-[1.02] transition transform opacity-0 translate-y-5";
-      card.innerHTML = `
-        <h4 class="font-semibold">${data.name}</h4>
-        <p class="text-gray-400">${data.message}</p>
+      const row = document.createElement("tr");
+      row.className = "border-b border-gray-700 hover:bg-[#2a2a3e] transition";
+      row.innerHTML = `
+        <td class="p-3">${no++}</td>
+        <td class="p-3 font-semibold">${data.name}</td>
+        <td class="p-3">${data.message}</td>
       `;
-      messagesList.appendChild(card);
-
-      // animasi masuk tiap komentar
-      setTimeout(() => {
-        card.classList.remove("opacity-0", "translate-y-5");
-        card.classList.add("opacity-100", "translate-y-0");
-      }, 100);
+      messagesList.appendChild(row);
     });
   });
+
+  // Init AOS
+  AOS.init({
+    duration: 1000,
+    mirror: true
+  });
+
+  // Typed.js
+  var typed = new Typed('#typed', {
+    strings: ["Cyber Security", "Network Engineer", "IT Support"],
+    typeSpeed: 70,
+    backSpeed: 50,
+    loop: true,
+    showCursor: true,
+    cursorChar: "|"
+  });
 </script>
-
-<!-- Footer -->
-<footer class="py-6 text-center text-gray-500 bg-black/30">
-  <p>&copy; 2025 Chandra Putra Anugrah. All rights reserved.</p>
-</footer>
-
-<!-- Scripts -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-<script src="script.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Init AOS
-    AOS.init({
-      duration: 1000,
-      mirror: true
-    });
-
-    // Init Typed.js
-    var typed = new Typed('#typed', {
-  strings: ["Cyber Security", "Network Engineer", "IT Support"],
-  typeSpeed: 70,
-  backSpeed: 50,
-  loop: true,
-  showCursor: true,   // biar hanya 1 cursor
-  cursorChar: "|"     // kursor custom (bisa diganti misal "_" atau kosong "")
-    });
-          </script>
